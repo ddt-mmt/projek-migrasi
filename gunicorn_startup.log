@@ -1,0 +1,223 @@
+[2025-10-30 10:04:30 +0700] [1158878] [INFO] Starting gunicorn 21.2.0
+[2025-10-30 10:04:30 +0700] [1158878] [INFO] Listening at: http://0.0.0.0:5000 (1158878)
+[2025-10-30 10:04:30 +0700] [1158878] [INFO] Using worker: sync
+[2025-10-30 10:04:30 +0700] [1158881] [INFO] Booting worker with pid: 1158881
+[2025-10-30 10:04:31 +0700] [1158878] [ERROR] Worker (pid:1158881) was sent SIGHUP!
+[2025-10-30 10:04:31 +0700] [1158885] [INFO] Booting worker with pid: 1158885
+[2025-10-30 10:04:31 +0700] [1158878] [INFO] Handling signal: hup
+[2025-10-30 10:04:31 +0700] [1158878] [INFO] Hang up: Master
+[2025-10-30 10:04:31 +0700] [1158886] [INFO] Booting worker with pid: 1158886
+[2025-10-30 10:04:32 +0700] [1158885] [INFO] Worker exiting (pid: 1158885)
+[2025-10-30 10:05:10,092] ERROR in app: Exception on /register [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/projek-migrasi/app.py", line 40, in register
+    if User.query.filter_by(username=username).first():
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2919, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/sql/elements.py", line 335, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1587, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1954, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 2135, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('didit', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[Thu Oct 30 10:05:10 2025] Internal Server Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/projek-migrasi/app.py", line 40, in register
+    if User.query.filter_by(username=username).first():
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2919, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/sql/elements.py", line 335, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1587, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1954, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 2135, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('didit', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-10-30 10:05:17,260] ERROR in app: Exception on /login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/projek-migrasi/app.py", line 58, in login
+    user = User.query.filter_by(username=username).first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2919, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/sql/elements.py", line 335, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1587, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1954, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 2135, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('didit', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-10-30 10:05:47 +0700] [1158878] [CRITICAL] WORKER TIMEOUT (pid:1158886)
+[Thu Oct 30 10:05:17 2025] Internal Server Error: 500 Internal Server Error: The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.
+Traceback (most recent call last):
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/projek-migrasi/app.py", line 58, in login
+    user = User.query.filter_by(username=username).first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/query.py", line 2919, in _iter
+    execution_options={"_sa_orm_load_options": self.load_options},
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/orm/session.py", line 1717, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/sql/elements.py", line 335, in _execute_on_connection
+    self, multiparams, params, execution_options
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1587, in _execute_clauseelement
+    cache_hit=cache_hit,
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1954, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 2135, in _handle_dbapi_exception
+    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/base.py", line 1911, in _execute_context
+    cursor, statement, parameters, context
+  File "/usr/local/lib64/python3.6/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('didit', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2025-10-30 10:05:47 +0700] [1158886] [INFO] Worker exiting (pid: 1158886)
+[2025-10-30 10:05:47 +0700] [1158878] [ERROR] Worker (pid:1158886) exited with code 1
+[2025-10-30 10:05:47 +0700] [1158878] [ERROR] Worker (pid:1158886) exited with code 1.
+[2025-10-30 10:05:47 +0700] [1159069] [INFO] Booting worker with pid: 1159069
+[2025-10-30 10:06:18 +0700] [1158878] [CRITICAL] WORKER TIMEOUT (pid:1159069)
+[2025-10-30 10:06:18 +0700] [1159069] [INFO] Worker exiting (pid: 1159069)
+[2025-10-30 10:06:18 +0700] [1158878] [ERROR] Worker (pid:1159069) exited with code 1
+[2025-10-30 10:06:18 +0700] [1158878] [ERROR] Worker (pid:1159069) exited with code 1.
+[2025-10-30 10:06:18 +0700] [1159071] [INFO] Booting worker with pid: 1159071
+[2025-10-30 10:10:10 +0700] [1158878] [INFO] Handling signal: term
+[2025-10-30 10:10:10 +0700] [1159071] [INFO] Worker exiting (pid: 1159071)
+[2025-10-30 10:10:10 +0700] [1158878] [INFO] Shutting down: Master
