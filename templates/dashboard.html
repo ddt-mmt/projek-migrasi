@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Selamat Datang, {{ session['username'] }}!</h2>
+    <p>Ini adalah halaman dashboard Anda. Hanya pengguna yang sudah login yang bisa melihat halaman ini.</p>
+    
+    <hr>
+
+    <h4>Fitur Analisis Jaringan Asli</h4>
+    <p>Fitur asli dari aplikasi ini untuk menganalisis target masih tersedia di bawah ini.</p>
+
+    <form id="analyze-form">
+        <div class="mb-3">
+            <label for="target" class="form-label">Masukkan Target (IP atau Domain)</label>
+            <input type="text" class="form-control" id="target" name="target" required>
+        </div>
+        <button type="submit" class="btn btn-info">Mulai Analisis</button>
+    </form>
+
+    <div id="results" class="mt-4"></div>
+
+    <script>
+        document.getElementById('analyze-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const target = document.getElementById('target').value;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>';
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ target: target })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    let formattedResult = `<h5>Hasil Analisis untuk ${data.target}</h5><pre>${data.result}</pre>`;
+                    resultsDiv.innerHTML = formattedResult;
+                } else {
+                    resultsDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${data.error}</div>`;
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> Terjadi masalah saat menghubungi server.</div>`;
+            }
+        });
+    </script>
+{% endblock %}
